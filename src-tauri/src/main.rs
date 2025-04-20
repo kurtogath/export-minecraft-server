@@ -5,7 +5,7 @@ use tauri::command;
 
 #[command]
 fn run_backup() {
-  println!("Backup");
+  println!("Tamo en Rust");
 }
 
 

@@ -1,9 +1,9 @@
+import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
 
 async function runBackup() {
     try {
-        // Llamamos al comando "run_backup" registrado en el backend (Rust)
-        console.log("Backup");
+        invoke("run_backup");
     } catch (error) {
         console.error("Error al ejecutar el comando:", error);
     }
