@@ -1,31 +1,17 @@
-import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
-
-async function runBackup() {
-    try {
-        invoke("run_backup");
-    } catch (error) {
-        console.error("Error al ejecutar el comando:", error);
-    }
-}
+import "./styles/main.scss";
 
 function App() {
+
     return (
-        <main className="container">
-            <div className="row">
-                <div className="p-4">
-                    <h1 className="text-2xl mb-4">
-                        Exportador de Mundo Minecraft
-                    </h1>
-                    <button
-                        onClick={runBackup}
-                        className="bg-green-500 text-white px-4 py-2 rounded"
-                    >
-                        Subir mundo a Drive
-                    </button>
-                </div>
+        <>
+            <div>
+                <img src={'./src/assets/Caracol.webp'} className="logo" alt="Vite logo" />
             </div>
-        </main>
+            <h1>Exportar Mundo de maincrah</h1>
+            <div className="card">
+                
+            </div>
+        </>
     );
 }
 

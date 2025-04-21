@@ -1,91 +1,60 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-### react ###
-.DS_*
-*.log
-logs
-**/*.backup.*
-**/*.back.*
-
-node_modules
-bower_components
-
-*.sublime*
-
-psd
-thumb
-sketch
-
-package-lock.json
-
-# Node
+# Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 package-lock.json
+yarn.lock
+.pnpm-debug.log
 
-# Build outputs
+# Vite build output
 dist/
-dist-*/
 .vite/
 
-# IDEs & OS
+# Electron
+/out/
+build/
+release/
+*.asar
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# macOS
 .DS_Store
+
+# Windows
 Thumbs.db
-.vscode/
+
+# Logs
+logs/
+*.log
+
+# Editor directories and files
 .idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
 
-# Tauri
-/src-tauri/target/
-src-tauri/.cargo/
-src-tauri/Cargo.lock
+# Coverage
+coverage/
 
-# TypeScript
+# Optional TypeScript cache
 *.tsbuildinfo
 
-# Rust (Tauri)
-**/*.rs.bk
+# Misc
+*.tgz
+*.orig
 
-# Archivos generados
-*.zip
-*.rar
-*.tar.gz
-*.log
-*.bak
-
-# Archivos de config sensibles
-.env
-.env.*.local
-backend/config.json
-
-# Google auth tokens o credenciales
-tokens.json
-credentials.json
-
-# Carpeta con backups de mundos
-/world-backups/
+# Electron Forge / Builder extra
+/.webpack/
+.cache/
