@@ -21,12 +21,10 @@
         "noFallthroughCasesInSwitch": true,
 
         "baseUrl": "./",
-        "paths" :{
-            "@/*": [
-                "src/*"
-            ],
-            "assets/*":["./src/assets/*"],
-            "styles/*":["./src/styles/*"]
+        "paths": {
+            "@/*": ["src/*"],
+            "assets/*": ["./src/assets/*"],
+            "styles/*": ["./src/styles/*"]
         }
     },
     "include": ["src", "electron"],

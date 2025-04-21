@@ -1,7 +1,39 @@
-import { app, BrowserWindow } from "electron";
+import { Menu, app, BrowserWindow } from "electron";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+const setMainMenu = (mainWindow) => {
+  const template = [
+    {
+      label: "Exilor",
+      submenu: [
+        {
+          label: "Abrir devtools",
+          click: () => {
+            mainWindow.webContents.openDevTools();
+          }
+        },
+        { type: "separator" }
+      ]
+    },
+    {
+      label: "View",
+      submenu: [
+        { role: "reload" },
+        { role: "forceReload" },
+        { role: "toggleDevTools" },
+        { type: "separator" },
+        { role: "resetZoom" },
+        { role: "zoomIn" },
+        { role: "zoomOut" },
+        { type: "separator" },
+        { role: "togglefullscreen" }
+      ]
+    }
+  ];
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+};
 createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 process.env.APP_ROOT = path.join(__dirname, "..");
@@ -16,7 +48,11 @@ function createWindow() {
     icon: "../src/assets/Caracol.webp",
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs")
-    }
+    },
+    width: 800,
+    height: 600,
+    minWidth: 200,
+    minHeight: 200
   });
   win.webContents.on("did-finish-load", () => {
     win == null ? void 0 : win.webContents.send(
@@ -29,6 +65,7 @@ function createWindow() {
   } else {
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
+  setMainMenu(win);
 }
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

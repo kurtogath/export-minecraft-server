@@ -3,7 +3,9 @@ import { app, BrowserWindow } from "electron";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { setMainMenu } from "../src/components/menu";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -31,11 +33,15 @@ let win: BrowserWindow | null;
 
 function createWindow() {
     win = new BrowserWindow({
-        title:"Exportar mundo de Exilor",
+        title: "Exportar mundo de Exilor",
         icon: "../src/assets/Caracol.webp",
         webPreferences: {
             preload: path.join(__dirname, "preload.mjs"),
         },
+        width: 800,
+        height: 600,
+        minWidth: 200,
+        minHeight: 200,
     });
 
     // Test active push message to Renderer-process.
@@ -49,10 +55,12 @@ function createWindow() {
     if (VITE_DEV_SERVER_URL) {
         win.loadURL(VITE_DEV_SERVER_URL);
     } else {
-        // win.loadFile('dist/index.html')
         win.loadFile(path.join(RENDERER_DIST, "index.html"));
     }
+    
+    setMainMenu(win);
 }
+
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
