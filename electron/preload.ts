@@ -24,4 +24,6 @@ contextBridge.exposeInMainWorld("ipcRenderer", {
 
     // You can expose other APTs you need here.
     // ...
+
+    openFileDialog: () => ipcRenderer.invoke("dialog:openFile"),
 });

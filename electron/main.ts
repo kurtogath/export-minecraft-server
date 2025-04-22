@@ -1,5 +1,5 @@
 //This is where the windows is created
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, dialog, ipcMain } from "electron";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -40,8 +40,8 @@ function createWindow() {
         },
         width: 800,
         height: 600,
-        minWidth: 200,
-        minHeight: 200,
+        minWidth: 900,
+        minHeight: 600,
     });
 
     // Test active push message to Renderer-process.
@@ -57,10 +57,9 @@ function createWindow() {
     } else {
         win.loadFile(path.join(RENDERER_DIST, "index.html"));
     }
-    
+
     setMainMenu(win);
 }
-
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -80,4 +79,29 @@ app.on("activate", () => {
     }
 });
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+    createWindow();
+
+    //
+    ipcMain.handle("dialog:openFile", async () => {
+        // Abrir el diálogo para seleccionar un archivo
+        const result = await dialog
+            .showOpenDialog({
+                defaultPath: app.getPath("desktop"),
+                title: "Seleccionar Zip",
+                filters: [{ name: "Zip", extensions: ["zip", "rar"] }],
+                properties: ["openFile"],
+            })
+            .then((result) => {
+                if (!result.canceled) {
+                    return result.filePaths[0];
+                }
+                return "";
+            })
+            .catch((err) => {
+                console.log(`Error ${err}`);
+            });
+
+        return result;
+    });
+});

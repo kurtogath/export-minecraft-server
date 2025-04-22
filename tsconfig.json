@@ -24,7 +24,8 @@
         "paths": {
             "@/*": ["src/*"],
             "assets/*": ["./src/assets/*"],
-            "styles/*": ["./src/styles/*"]
+            "styles/*": ["./src/styles/*"],
+            "types/*": ["./src/types/*"]
         }
     },
     "include": ["src", "electron"],

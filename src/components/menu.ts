@@ -1,6 +1,6 @@
 import { BrowserWindow, Menu } from "electron";
 
-export const setMainMenu = (mainWindow : BrowserWindow): void => {
+export const setMainMenu = (mainWindow: BrowserWindow): void => {
     const template: Electron.MenuItemConstructorOptions[] = [
         {
             label: "Exilor",
@@ -8,7 +8,7 @@ export const setMainMenu = (mainWindow : BrowserWindow): void => {
                 {
                     label: "Abrir devtools",
                     click: () => {
-                        mainWindow.webContents.openDevTools()
+                        mainWindow.webContents.openDevTools();
                     },
                 },
                 { type: "separator" },
@@ -32,6 +32,4 @@ export const setMainMenu = (mainWindow : BrowserWindow): void => {
 
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
-
-
 };
